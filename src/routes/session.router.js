@@ -12,15 +12,12 @@ router.get(
 );
 
 router.get(
-  "/session",
-  passport.authenticate(
-    "github",
-    {failureRedirect: "/login"},
-    async (req, res) => {
-      req.session.user = req.user;
-      res.redirect("/");
-    }
-  )
+  "/githubcallback",
+  passport.authenticate("github", {failureRedirect: "/login"}),
+  async (req, res) => {
+    req.session.user = req.user;
+    res.redirect("/");
+  }
 );
 
 router.post(

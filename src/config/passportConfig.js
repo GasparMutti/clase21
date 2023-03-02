@@ -20,9 +20,9 @@ const initPassport = () => {
     "github",
     new githubService(
       {
-        clientID: "Iv1.494b63e3655dd0d3",
-        clientSecret: "d76044b722462c22a01548886779e0d17ed6522e",
-        callbackURL: "http://localhost:8080/api/session/github",
+        clientID: "Iv1.685415c5dac6b4dc",
+        clientSecret: "9474d0df884ab5952a23890561a7a0508fd176d0",
+        callbackURL: "http://localhost:8080/api/session/githubcallback",
       },
       async (accessToken, refreshToken, profile, done) => {
         try {
@@ -31,12 +31,14 @@ const initPassport = () => {
           if (!user) {
             const newUser = {
               firstName: profile._json.name,
-              lastName: "1",
+              lastName: "",
               email: profile._json.email,
-              password: "2",
+              password: "",
             };
             const result = await userModel.create(newUser);
-            done(null, result);
+            return done(null, result);
+          } else {
+            return done(null, user);
           }
         } catch (error) {
           return done(error);

@@ -47,7 +47,7 @@ const initPassport = () => {
     )
   );
 
-  /*   passport.use(
+  passport.use(
     "register",
     new localStrategy(
       {passReqToCallback: true, usernameField: "email"},
@@ -93,7 +93,7 @@ const initPassport = () => {
         }
       }
     )
-  ); */
+  );
 };
 
 export default initPassport;
